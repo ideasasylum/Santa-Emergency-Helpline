@@ -34,11 +34,11 @@ switch($action) {
     $digit = isset($_REQUEST['Digits']) ? $_REQUEST['Digits'] : null;
     $child = $kids[$child_id];
     $name = $child->name;
-    $pronoun = $child->male ? 'his' : 'her';
+    $possessive_pronoun = $child->male ? 'his' : 'her';
 
     if($digit == 1) {
       // status
-      $response->say("Great news! $name is on the good list! Santa's elves are loading $pronoun presents onto the sleigh right now");
+      $response->say("Great news! $name is on the good list! Santa's elves are loading $possessive_pronoun presents onto the sleigh right now");
       $response->hangup();
     } else if($digit == 2) {
       // incident
@@ -50,17 +50,18 @@ switch($action) {
     $digit = isset($_REQUEST['Digits']) ? $_REQUEST['Digits'] : null;
     $child = $kids[$child_id];
     $name = $child->name;
-    $pronoun = $child->male ? 'his' : 'her';
+    $possessive_pronoun = $child->male ? 'his' : 'her';
+    $pronoun = $child->male ? 'he' : 'she';
 
     if($digit == 1) {
       $response->say("That sounds promising. What has $name done?");
       $response->pause(array('length' => '10'));
-      $response->say("That is awesome! All the elves are delighted to hear that. They're putting $pronoun name at the top of the good list");
+      $response->say("That is awesome! All the elves are delighted to hear that. They're putting $possessive_pronoun name at the top of the good list");
       $response->hangup();
     } else if($digit == 2) {
       $response->say("Oh, dear. That doesn't sound good. What has $name done?");
       $response->pause(array('length' => '10'));
-      $response->say("Ok, that's very disappointing. We'll pass that information on to Santa's elves. If $name doesn't start being good soon, she'll be getting reindeer poo for Christmas!");
+      $response->say("Ok, that's very disappointing. We'll pass that information on to Santa's elves. If $name doesn't start being good soon, $pronoun'll be getting reindeer poo for Christmas!");
       $response->hangup();
     }
     break;
